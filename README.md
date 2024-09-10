@@ -1,2 +1,2 @@
-# kittyconfig
-Config file for kitty
+# wezterm
+Config file for wezterm
