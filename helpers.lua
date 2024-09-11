@@ -73,7 +73,7 @@ function module.apply_to_config(config)
     mods = 'CTRL',
     action = wezterm.action.ActivatePaneDirection 'Down',
   },
-  { key = 'i', mods = 'CTRL', action = wezterm.action.SwitchToWorkspace },
+  { key = 'k', mods = 'CTRL', action = wezterm.action.SwitchToWorkspace },
   { key = 'j', mods = 'CTRL', action = wezterm.action.SwitchWorkspaceRelative(1) },
   { key = 'p', mods = 'CTRL', action = wezterm.action.SwitchWorkspaceRelative(-1) },
   { key = 'r', mods = 'CTRL', action = wezterm.action.RotatePanes 'Clockwise' },
