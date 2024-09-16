@@ -111,7 +111,7 @@ local bubbles_theme = {
 -- Define custom highlight groups
 vim.cmd([[
   highlight LualineActiveBuffer guibg=#00e600 guifg=#000000
-  highlight LualineInactiveBuffer guibg=#808080 guifg=#000000
+  highlight LualineInactiveBuffer guibg=#080808 guifg=#c6c6c6
 ]])
 
 require('lualine').setup {

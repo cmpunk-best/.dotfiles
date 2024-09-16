@@ -124,7 +124,21 @@ alias cfg="cd ~/.config/nvim/"
 alias .="cd .."
 alias add="sudo pacman -S"
 alias remove="sudo pacman -Rcns"
+#alias weather="curl -s 'wttr.in/Haridwar?0'"
+alias weather='f() { curl -s "wttr.in/$1?0"; }; f'
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+#cowsay "$(fortune -s)"
+#cowsay "$(echo -e "$(curl -s 'wttr.in/Haridwar?format=3')\n$(fortune)")"
+#curl -s 'wttr.in/Haridwar?0'
+
+#cowsay "I use arch btw"
+# Display cowsay only once per session
+#~/starting_display.sh
+
+
+
 
