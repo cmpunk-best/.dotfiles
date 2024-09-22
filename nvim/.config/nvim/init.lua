@@ -122,7 +122,31 @@ require('lualine').setup {
     icons_enabled = true,
   },
   sections = {
-    lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
+    lualine_a = { 
+      { 'mode', separator = { left = '' }, right_padding = 2 ,
+            fmt = function(str)
+          local mode_map = {
+            ['NORMAL'] = 'N',
+            ['INSERT'] = 'I',
+            ['VISUAL'] = 'V',
+            ['V-LINE'] = 'V',
+            ['V-BLOCK'] = 'V',
+            ['REPLACE'] = 'R',
+            ['COMMAND'] = 'C',
+            ['SELECT'] = 'S',
+            ['S-LINE'] = 'S',
+            ['S-BLOCK'] = 'S',
+            ['EX'] = 'E',
+            ['TERMINAL'] = 'T',
+          }
+          return mode_map[str] or str
+        end
+      },
+      {
+        'branch', separator = { left = '' }, right_padding = 2,
+        color = {fg = '#c6c6c6' , bg = '#080808'}
+      }
+    },
     lualine_b = {  
     {'buffers',
      use_mode_colors = false,
