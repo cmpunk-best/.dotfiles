@@ -164,10 +164,22 @@ require('lualine').setup {
     lualine_c = {
       '%=', --[[ add your center compoentnts here in place of this comment ]]
     },
-    lualine_x = {},
+    lualine_x = {
+    },
     lualine_y = { 'filetype', 'progress' },
     lualine_z = {
-      { 'location', separator = { right = '' }, left_padding = 0 },
+      --{ 'location', separator = { right = '' }, left_padding = 0 },
+      {
+        function()
+          local hour = tonumber(os.date('%H'))
+          local icon = (hour >= 6 and hour < 18) and ' ' or '󰖔 ' 
+        return icon .. os.date('%H:%M')
+        end,
+        --icon = '󱩷', -- Optional clock icon--
+        separator = {  right = '' },
+        left_padding=0,
+        --color = { fg = '#ffffff', bg = '#000000' }, -- Custom colors for time
+      },
     },
   },
   inactive_sections = {
