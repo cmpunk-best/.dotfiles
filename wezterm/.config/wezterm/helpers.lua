@@ -20,11 +20,13 @@ end
 function module.apply_to_config(config)
   private_helper()
 
-  config.color_scheme = 'gruvbox'
+  config.color_scheme = 'moonfly'
   config.font_size = 18
   config.window_background_opacity = 0.90
   config.window_decorations = "NONE"
-  config.enable_tab_bar = false
+  config.enable_tab_bar = false 
+  config.tab_bar_at_bottom = true
+  config.use_fancy_tab_bar = false
   config.adjust_window_size_when_changing_font_size = false
   wezterm.on('update-right-status', function(window, pane)
     window:set_right_status(window:active_workspace())
@@ -32,6 +34,28 @@ function module.apply_to_config(config)
   wezterm.on('update-right-status', function(window, pane)
     window:set_right_status(window:active_workspace())
   end)
+  config.colors = {
+    tab_bar = {
+      -- Background color of the tab bar
+      background = "#1c1c1c",
+
+      -- Active tab
+      active_tab = {
+        bg_color = "#ffcc00",  -- Background color of active tab
+        fg_color = "#000000",  -- Text color of active tab
+        intensity = "Bold",    -- Text intensity
+        underline = "None",
+        italic = false,
+        strikethrough = false,
+      },
+
+      -- Inactive tabs
+      inactive_tab = {
+        bg_color = "#3c3c3c",  -- Background color of inactive tabs
+        fg_color = "#d3d3d3",  -- Text color of inactive tabs
+      },
+  }
+  }
   config.keys = {
     {
       key = 'h',

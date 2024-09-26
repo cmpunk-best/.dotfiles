@@ -9,6 +9,7 @@ vim.cmd("set nohlsearch")
 -- Highlighting the current line
 vim.cmd("set cursorline")
 vim.cmd("set clipboard=unnamed")
+
 vim.g.mapleader = " "
 
 -- Lazy package manager
@@ -66,6 +67,8 @@ vim.api.nvim_set_keymap('i', '<C-Space>', [[cmp#complete()]], { expr = true, sil
 --vim.o.background = "dark" -- or "light" for light mode
 --vim.cmd.colorscheme("gruvbox")
 vim.cmd.colorscheme("moonfly")
+vim.g.moonflyTransparent = true
+
 vim.g.moonflyCursorColor = true
 vim.g.moonflyWinSeparator = 2
 
@@ -86,6 +89,8 @@ local colors = {
   --red    = '#ff9fbf',
   violet = '#d183e8',
   grey   = '#080808',
+  green  = '#00e600',
+  
 }
 
 local bubbles_theme = {
@@ -109,21 +114,18 @@ local bubbles_theme = {
 --
 -- highlight LualineInactiveBuffer guibg=#808080 guifg=#c6c6c6
 -- Define custom highlight groups
-vim.cmd([[
-  highlight LualineActiveBuffer guibg=#00e600 guifg=#000000
-  highlight LualineInactiveBuffer guibg=#080808 guifg=#c6c6c6
-]])
 
 require('lualine').setup {
   options = {
     theme = bubbles_theme,
     component_separators = '',
-    section_separators = { left = '', right = '' },
+    --section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = ''},
     icons_enabled = true,
   },
   sections = {
     lualine_a = { 
-      { 'mode', separator = { left = '' }, right_padding = 2 ,
+      { 'mode', separator = { right = '' }, right_padding = 2 ,
             fmt = function(str)
           local mode_map = {
             ['NORMAL'] = 'N',
@@ -144,7 +146,7 @@ require('lualine').setup {
       },
       {
         'branch', separator = { left = '' }, right_padding = 2,
-        color = {fg = '#c6c6c6' , bg = '#080808'}
+        color = {fg = colors.white , bg = colors.black}
       }
     },
     lualine_b = {  
@@ -152,8 +154,9 @@ require('lualine').setup {
      use_mode_colors = false,
       buffers_color = {
         -- Same values as the general color option can be used here.
-        active = 'LualineActiveBuffer',
-        inactive = 'LualineInactiveBuffer',
+        --active = 'LualineActiveBuffer',
+        active = { fg =colors.black, bg = colors.green },
+        --inactive = 'LualineInactiveBuffer',
       },
     symbols = {
         modified = ' ●',   -- Symbol for modified buffers
@@ -178,7 +181,7 @@ require('lualine').setup {
         --icon = '󱩷', -- Optional clock icon--
         separator = {  right = '' },
         left_padding=0,
-        --color = { fg = '#ffffff', bg = '#000000' }, -- Custom colors for time
+        color = { fg = colors.violet, bg = colors.black }, -- Custom colors for time
       },
     },
   },
