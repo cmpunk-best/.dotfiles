@@ -124,8 +124,8 @@ alias cfg="cd ~/.config/nvim/"
 alias .="cd .."
 alias add="sudo pacman -S"
 alias remove="sudo pacman -Rcns"
-#alias weather="curl -s 'wttr.in/Haridwar?0'"
 alias weather='f() { curl -s "wttr.in/$1?0"; }; f'
+alias ta='f(){tmux a -t $1;};f'
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

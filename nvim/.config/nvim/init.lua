@@ -215,10 +215,9 @@ vim.api.nvim_set_keymap('n', '<Left>', ':vertical resize -2<CR>', { noremap = tr
 vim.api.nvim_set_keymap('n', '<leader>p', ':Ex<CR>', { noremap = true, silent = true })
 
 -- Buffers
-vim.api.nvim_set_keymap('n', '<Up>', ':bn<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Down>', ':bp<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ',', ':bn<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '.', ':bp<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>d', ':bd<CR>', { noremap = true, silent = true })
-
 
 
 
