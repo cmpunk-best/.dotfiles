@@ -30,12 +30,26 @@ vim.opt.rtp:prepend(lazypath)
 -- Calling lazy to download plugins
 require("lazy").setup("plugins")
 require("neo-tree").setup({
-        close_if_last_window = true})
+  close_if_last_window = true,
+  window = {
+    position = 'bottom',
+    width = 25,
+    indent = 0,  -- Set to 1 for a small separation line
+  },
+  default_component_configs = {
+    indent = {
+      indent_marker = '',  -- Customize the indent marker if desired
+      last_indent_marker = '',  -- Customize the last indent marker
+    },
+  },
+})
+
+
 local builtin = require("telescope.builtin")
 vim.keymap.set('n','<leader>p', builtin.find_files,{})
 vim.keymap.set('n','<leader>f', builtin.find_files,{})
 vim.keymap.set('n','<leader>g', builtin.live_grep,{})
-vim.keymap.set('n','<leader>n', ':Neotree filesystem reveal left toggle<CR>')
+vim.keymap.set('n','<leader>n', ':Neotree filesystem reveal right toggle<CR>')
 -- Completions
 -- init.lua or cmp-config.lua
 local cmp = require('cmp')
@@ -145,7 +159,7 @@ require('lualine').setup {
         end
       },
       {
-        'branch', separator = { left = '' }, right_padding = 2,
+        'branch', separator = { right = '' }, right_padding = 2,
         color = {fg = colors.white , bg = colors.black}
       }
     },

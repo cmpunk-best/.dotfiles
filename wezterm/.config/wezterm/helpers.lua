@@ -21,6 +21,7 @@ function module.apply_to_config(config)
   private_helper()
 
   config.color_scheme = 'moonfly'
+  config.enable_wayland = false
   config.font_size = 18
   config.window_background_opacity = 0.90
   config.window_decorations = "NONE"
