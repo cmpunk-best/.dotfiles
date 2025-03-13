@@ -35,6 +35,34 @@ function module.apply_to_config(config)
   wezterm.on('update-right-status', function(window, pane)
     window:set_right_status(window:active_workspace())
   end)
+  ------------------------------------
+  ---WEZTERM SPECIFIC ISSUE 
+  ------------------------------------
+  local padding = {
+  left = '1cell',
+  right = '1cell',
+  top = '0.5cell',
+  bottom = '0.5cell',
+  }
+
+  wezterm.on('user-var-changed', function(window, pane, name, value)
+    if name == "NVIM_ENTER" then
+      local overrides = window:get_config_overrides() or {}
+      if value == "1" then
+        overrides.window_padding = {
+          left = 0,
+          right = 0,
+          top = 0,
+          bottom = 0
+        }
+      else
+        overrides.window_padding = padding
+      end
+      window:set_config_overrides(overrides)
+    end
+  end)
+  ------------------------------------
+
   config.colors = {
     tab_bar = {
       -- Background color of the tab bar

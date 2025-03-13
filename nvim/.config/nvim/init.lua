@@ -1,5 +1,3 @@
-
-
 vim.cmd("set expandtab")
 vim.cmd("set relativenumber")
 vim.cmd("set nu")
@@ -10,8 +8,28 @@ vim.cmd("set nohlsearch")
 vim.cmd("set cursorline")
 vim.cmd("set clipboard=unnamed")
 
-vim.g.mapleader = " "
 
+---------------------------------
+--- WEZTERM SPECIFIC ISSUE 
+---------------------------------
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd("VimEnter", {
+  callback = function()
+    --NVIM_ENTER=1
+    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MQ==\007")]])
+  end,
+})
+
+autocmd("VimLeavePre", {
+  callback = function()
+    --NVIM_ENTER=0
+    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MA==\007")]])
+  end,
+})
+---------------------------------
+
+vim.g.mapleader = " "
 -- Lazy package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -78,8 +96,8 @@ vim.api.nvim_set_keymap('i', '<C-Space>', [[cmp#complete()]], { expr = true, sil
 --require("gruvbox").setup()
 --require("darkvoid").setup()
 
---vim.o.background = "dark" -- or "light" for light mode
---vim.cmd.colorscheme("gruvbox")
+vim.o.background = "dark" -- or "light" for light mode
+--vim.cmd.colorscheme("retrobox")
 vim.cmd.colorscheme("moonfly")
 vim.g.moonflyTransparent = true
 
