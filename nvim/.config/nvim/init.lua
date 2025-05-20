@@ -12,21 +12,21 @@ vim.cmd("set clipboard=unnamed")
 ---------------------------------
 --- WEZTERM SPECIFIC ISSUE 
 ---------------------------------
-local autocmd = vim.api.nvim_create_autocmd
+--local autocmd = vim.api.nvim_create_autocmd
 
-autocmd("VimEnter", {
-  callback = function()
+--autocmd("VimEnter", {
+--  callback = function()
     --NVIM_ENTER=1
-    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MQ==\007")]])
-  end,
-})
+--    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MQ==\007")]])
+--  end,
+--})
 
-autocmd("VimLeavePre", {
-  callback = function()
+--autocmd("VimLeavePre", {
+--  callback = function()
     --NVIM_ENTER=0
-    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MA==\007")]])
-  end,
-})
+--    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MA==\007")]])
+--  end,
+--})
 ---------------------------------
 
 vim.g.mapleader = " "
@@ -95,10 +95,39 @@ vim.api.nvim_set_keymap('i', '<C-Space>', [[cmp#complete()]], { expr = true, sil
 -- Colorscheme
 --require("gruvbox").setup()
 --require("darkvoid").setup()
+require("rose-pine").setup({
+                variant = "main",      -- auto, main, moon, or dawn
+                dark_variant = "main", -- main, moon, or dawn
+                dim_inactive_windows = false,
+                -- disable_background = true,
+                -- disable_nc_background = false,
+                -- disable_float_background = false,
+                -- extend_background_behind_borders = false,
+                styles = {
+                  bold = true,
+                  italic = false,
+                  transparency = true,
+                },
+                highlight_groups = {
+                     ColorColumn = { bg = "#1C1C21" },
+                     -- Normal = { bg = "none" },                      -- Main background remains transparent
+                     Pmenu = { bg = "", fg = "#e0def4" },           -- Completion menu background
+                     PmenuSel = { bg = "#4a465d", fg = "#f8f5f2" }, -- Highlighted completion item
+                     PmenuSbar = { bg = "#191724" },                -- Scrollbar background
+                     PmenuThumb = { bg = "#9ccfd8" },               -- Scrollbar thumb
+                },
+                enable = {
+                    terminal = false,
+                    legacy_highlights = false, -- Improve compatibility for previous versions of Neovim
+                    migrations = true,         -- Handle deprecated options automatically
+                },
+
+})
+
 
 vim.o.background = "dark" -- or "light" for light mode
 --vim.cmd.colorscheme("retrobox")
-vim.cmd.colorscheme("moonfly")
+vim.cmd.colorscheme("rose-pine")
 vim.g.moonflyTransparent = true
 
 vim.g.moonflyCursorColor = true

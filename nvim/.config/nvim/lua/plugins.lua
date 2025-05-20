@@ -24,4 +24,6 @@ return {
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',
     },
-}
+    { "rose-pine/neovim",name = "rose-pine"},
+
+  }

@@ -20,21 +20,22 @@ end
 function module.apply_to_config(config)
   private_helper()
 
-  config.color_scheme = 'moonfly'
+  -- config.color_scheme = 'moonfly'
   config.enable_wayland = false
   config.font_size = 18
-  config.window_background_opacity = 0.90
+  config.window_background_opacity = 1
   config.window_decorations = "NONE"
   config.enable_tab_bar = false 
   config.tab_bar_at_bottom = true
   config.use_fancy_tab_bar = false
   config.adjust_window_size_when_changing_font_size = false
-  wezterm.on('update-right-status', function(window, pane)
-    window:set_right_status(window:active_workspace())
-  end)
-  wezterm.on('update-right-status', function(window, pane)
-    window:set_right_status(window:active_workspace())
-  end)
+
+--  wezterm.on('update-right-status', function(window, pane)
+--    window:set_right_status(window:active_workspace())
+--  end)
+--  wezterm.on('update-right-status', function(window, pane)
+--    window:set_right_status(window:active_workspace())
+--  end)
   ------------------------------------
   ---WEZTERM SPECIFIC ISSUE 
   ------------------------------------
