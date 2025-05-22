@@ -88,7 +88,7 @@ function module.apply_to_config(config)
   }
   config.keys = {
     {
-      key = 'h',
+      key = 'i',
       mods = 'CTRL',
       -- action = wezterm.action.SplitHorizontal {  domain = "CurrentPaneDomain" },
        action = wezterm.action_callback(function(win, pane)
