@@ -111,7 +111,7 @@ function module.apply_to_config(config)
       action = wezterm.action.AdjustPaneSize { "Right", 5 }, -- Adjust pane size by 5 cells to the right
     },
     {
-      key = 'b',
+      key = 'n',
       mods = 'CTRL',
       action = wezterm.action.SplitVertical{ domain = 'CurrentPaneDomain' },
     },
