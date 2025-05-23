@@ -129,6 +129,7 @@ alias weather='f() { curl -s "wttr.in/$1?0"; }; f'
 alias ta='f(){tmux a -t $1;};f'
 alias ts='f(){tmux new -s $1;};f'
 alias vol='f(){wpctl set-volume 44 $1;};f'
+alias ya='yazi'
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
