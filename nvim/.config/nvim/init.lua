@@ -1,3 +1,7 @@
+
+--------------------
+--- Basic Vim 
+--------------------
 vim.cmd("set expandtab")
 vim.cmd("set relativenumber")
 vim.cmd("set nu")
@@ -7,30 +11,10 @@ vim.cmd("set nohlsearch")
 -- Highlighting the current line
 vim.cmd("set cursorline")
 vim.cmd("set clipboard=unnamed")
-
-
----------------------------------
---- WEZTERM SPECIFIC ISSUE 
----------------------------------
---local autocmd = vim.api.nvim_create_autocmd
-
---autocmd("VimEnter", {
---  callback = function()
-    --NVIM_ENTER=1
---    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MQ==\007")]])
---  end,
---})
-
---autocmd("VimLeavePre", {
---  callback = function()
-    --NVIM_ENTER=0
---    vim.cmd([[call chansend(v:stderr, "\033]1337;SetUserVar=NVIM_ENTER=MA==\007")]])
---  end,
---})
----------------------------------
-
 vim.g.mapleader = " "
--- Lazy package manager
+--------------------
+--- LazyPlugin 
+--------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -43,8 +27,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
-
 -- Calling lazy to download plugins
 require("lazy").setup("plugins")
 require("neo-tree").setup({
@@ -62,6 +44,9 @@ require("neo-tree").setup({
   },
 })
 
+--------------------
+--- KeyMaps
+--------------------
 
 local builtin = require("telescope.builtin")
 vim.keymap.set('n','<leader>p', builtin.find_files,{})
@@ -91,13 +76,27 @@ cmp.setup({
 vim.api.nvim_set_keymap('i', '<C-Space>', [[cmp#complete()]], { expr = true, silent = true })
 
 
+--------------------
+--- THEME 
+--------------------
 -- will exclude all javascript snippets
 -- Colorscheme
 --require("gruvbox").setup()
 --require("darkvoid").setup()
+require("catppuccin").setup({
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+    },
+    transparent_background = true, -- disables setting the background color.
+    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+    no_italic = true, -- Force no italic
+  }) 
+--[[
 require("rose-pine").setup({
-                variant = "main",      -- auto, main, moon, or dawn
-                dark_variant = "main", -- main, moon, or dawn
+                variant = "moon",      -- auto, main, moon, or dawn
+                dark_variant = "moon", -- main, moon, or dawn
                 dim_inactive_windows = false,
                 -- disable_background = true,
                 -- disable_nc_background = false,
@@ -123,24 +122,19 @@ require("rose-pine").setup({
                 },
 
 })
-
+--]]
 
 vim.o.background = "dark" -- or "light" for light mode
 --vim.cmd.colorscheme("retrobox")
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("catppuccin")
 vim.g.moonflyTransparent = true
 
 vim.g.moonflyCursorColor = true
 vim.g.moonflyWinSeparator = 2
 
--- Lualine
-
--- Lualine
--- Bubbles config for lualine
--- Author: lokesh-krishna
--- MIT license, see LICENSE for more details.
-
--- stylua: ignore
+--------------------
+--- Lualine
+--------------------
 local colors = {
   blue   = '#80a0ff',
   cyan   = '#79dac8',
@@ -171,11 +165,6 @@ local bubbles_theme = {
     c = { fg = colors.white },
   },
 }
--- Lualine 
---
--- highlight LualineInactiveBuffer guibg=#808080 guifg=#c6c6c6
--- Define custom highlight groups
-
 require('lualine').setup {
   options = {
     theme = bubbles_theme,
@@ -264,7 +253,10 @@ require('lualine').setup {
 --  }
 --}
 
--- Split screen
+--------------------
+--- Misc KeyMaps 
+--------------------
+
 -- Slide split screen left
 vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', { noremap = true, silent = true })
 -- Slide split screen right
