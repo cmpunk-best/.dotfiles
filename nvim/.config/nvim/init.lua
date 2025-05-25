@@ -45,7 +45,7 @@ require("neo-tree").setup({
 })
 
 --------------------
---- KeyMaps
+--- Completions 
 --------------------
 
 local builtin = require("telescope.builtin")
@@ -74,7 +74,6 @@ cmp.setup({
 })
 -- Optional: Map <C-Space> to trigger completion
 vim.api.nvim_set_keymap('i', '<C-Space>', [[cmp#complete()]], { expr = true, silent = true })
-
 
 --------------------
 --- THEME 

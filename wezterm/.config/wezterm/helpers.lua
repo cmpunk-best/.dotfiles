@@ -20,10 +20,10 @@ end
 function module.apply_to_config(config)
   private_helper()
 
-  --config.color_scheme = 'Dracula'
+  -- config.color_scheme = 'Catppuccin Mocha'
   config.enable_wayland = false
   config.font_size = 18
-  config.window_background_opacity = 0.95
+  config.window_background_opacity = 0.90
   config.window_decorations = "NONE"
   config.enable_tab_bar = false 
   config.tab_bar_at_bottom = true
@@ -109,11 +109,6 @@ function module.apply_to_config(config)
       key = "RightArrow",
       mods = "SHIFT",
       action = wezterm.action.AdjustPaneSize { "Right", 5 }, -- Adjust pane size by 5 cells to the right
-    },
-    {
-      key = 'n',
-      mods = 'CTRL',
-      action = wezterm.action.SplitVertical{ domain = 'CurrentPaneDomain' },
     },
     {
     key = 'f',
