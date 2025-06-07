@@ -1,4 +1,3 @@
-
 --------------------
 --- Basic Vim 
 --------------------
@@ -45,16 +44,28 @@ require("neo-tree").setup({
 })
 
 --------------------
---- Completions 
+--- Fzf
 --------------------
+require('telescope').setup{
+ pickers = {
+   find_files = {
+      --theme = "dropdown",
+    }
+  },
+  extensions = {
+    fzf = {} 
+  }
+}
 
 local builtin = require("telescope.builtin")
-vim.keymap.set('n','<leader>p', builtin.find_files,{})
 vim.keymap.set('n','<leader>f', builtin.find_files,{})
+vim.keymap.set('n','<leader>c', function() builtin.find_files({cwd = vim.fn.expand('~/.config/nvim')}) end, {})
 vim.keymap.set('n','<leader>g', builtin.live_grep,{})
+vim.keymap.set('n','<leader>gc', function() builtin.live_grep({cwd = vim.fn.expand('~/.config/nvim')}) end, {})
 vim.keymap.set('n','<leader>n', ':Neotree filesystem reveal right toggle<CR>')
+--------------------
 -- Completions
--- init.lua or cmp-config.lua
+--------------------
 local cmp = require('cmp')
 cmp.setup({
   snippet = {
@@ -86,11 +97,11 @@ require("catppuccin").setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     background = { -- :h background
         light = "latte",
-        dark = "mocha",
+        dark = "frappe",
     },
     transparent_background = true, -- disables setting the background color.
     show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-    no_italic = true, -- Force no italic
+    no_italic = false, -- Force no italic
   }) 
 --[[
 require("rose-pine").setup({
@@ -136,14 +147,18 @@ vim.g.moonflyWinSeparator = 2
 --------------------
 local colors = {
   blue   = '#80a0ff',
+  teal   = '#81c8be',
   cyan   = '#79dac8',
-  black  = '#080808',
-  white  = '#c6c6c6',
+  --black  = '#4c4f69',
+  black  = '#181825',
+  mauve  = '#8839ef',
+  --white  = '#c6c6c6',
+  white  = '#dce0e8',
   red    = '#ff5189',
   --red    = '#ff9fbf',
   violet = '#d183e8',
   grey   = '#080808',
-  green  = '#00e600',
+  green  = '#40a02b',
   
 }
 
@@ -154,7 +169,7 @@ local bubbles_theme = {
     c = { fg = colors.white },
   },
 
-  insert = { a = { fg = colors.black, bg = colors.blue } },
+  insert = { a = { fg = colors.black, bg = colors.blue} },
   visual = { a = { fg = colors.black, bg = colors.cyan } },
   replace = { a = { fg = colors.black, bg = colors.red } },
 
@@ -195,7 +210,7 @@ require('lualine').setup {
       },
       {
         'branch', separator = { right = '' }, right_padding = 2,
-        color = {fg = colors.white , bg = colors.black}
+        color = {fg = colors.white, bg = colors.black}
       }
     },
     lualine_b = {  
@@ -218,7 +233,15 @@ require('lualine').setup {
     },
     lualine_x = {
     },
-    lualine_y = { 'filetype', 'progress' },
+    lualine_y = { 
+    {
+      'filetype',
+       color = { fg = colors.white , bg = colors.black }, -- Custom colors for time
+    }, 
+    {
+      'progress' ,
+       color = { fg = colors.white , bg = colors.black }, -- Custom colors for time
+    } },
     lualine_z = {
       --{ 'location', separator = { right = '' }, left_padding = 0 },
       {
@@ -274,6 +297,8 @@ vim.api.nvim_set_keymap('n', ',', ':bn<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '.', ':bp<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>d', ':bd<CR>', { noremap = true, silent = true })
 
-
-
-
+--------------------
+--- latex 
+--------------------
+vim.g.vimtex_view_method = 'sioyek'
+vim.g.vimtex_compiler_method = 'tectonic'
