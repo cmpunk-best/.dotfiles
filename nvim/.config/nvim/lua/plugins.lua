@@ -51,4 +51,11 @@ return {
         vim.g.vimtex_view_method = "sioyek"
       end
     },
+    {
+      'windwp/nvim-autopairs',
+      event = "InsertEnter",
+      config = true
+      -- use opts = {} for passing setup options
+      -- this is equivalent to setup({}) function
+    }
 }

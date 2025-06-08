@@ -20,10 +20,10 @@ end
 function module.apply_to_config(config)
   private_helper()
 
-  --config.color_scheme = 'catppuccin'
+  --config.color_scheme = 'dracula'
   config.enable_wayland = false
   config.font_size = 18
-  config.window_background_opacity = 0.95
+  config.window_background_opacity = 0.90
   config.window_decorations = "NONE"
   config.enable_tab_bar = false 
   config.tab_bar_at_bottom = true

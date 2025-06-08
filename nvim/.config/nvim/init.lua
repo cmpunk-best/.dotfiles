@@ -302,3 +302,5 @@ vim.api.nvim_set_keymap('n', '<Leader>d', ':bd<CR>', { noremap = true, silent = 
 --------------------
 vim.g.vimtex_view_method = 'sioyek'
 vim.g.vimtex_compiler_method = 'tectonic'
+
+
