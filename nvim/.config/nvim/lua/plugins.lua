@@ -3,6 +3,9 @@ return {
     { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
     { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
     {
+      "echasnovski/mini.files"
+    },
+    {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
@@ -14,6 +17,7 @@ return {
     {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons", 

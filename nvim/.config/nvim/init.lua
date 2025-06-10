@@ -28,23 +28,24 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- Calling lazy to download plugins
 require("lazy").setup("plugins")
-require("neo-tree").setup({
-  close_if_last_window = true,
-  window = {
-    position = 'bottom',
-    width = 25,
-    indent = 0,  -- Set to 1 for a small separation line
-  },
-  default_component_configs = {
-    indent = {
-      indent_marker = '',  -- Customize the indent marker if desired
-      last_indent_marker = '',  -- Customize the last indent marker
-    },
-  },
-})
-
+vim.g.neo_tree_remove = 1
+-- require("neo-tree").setup({
+--    close_if_last_window = true,
+--    window = {
+--      -- position = 'bottom',
+--      -- width = 25,
+--      -- indent = 0,  -- Set to 1 for a small separation line
+--    },
+--    default_component_configs = {
+--      indent = {
+--        indent_marker = '',  -- Customize the indent marker if desired
+--        last_indent_marker = '',  -- Customize the last indent marker
+--      },
+--    },
+--  })
+-- 
 --------------------
---- Fzf
+--- telescope fzf 
 --------------------
 require('telescope').setup{
  pickers = {
@@ -62,7 +63,38 @@ vim.keymap.set('n','<leader>f', builtin.find_files,{})
 vim.keymap.set('n','<leader>c', function() builtin.find_files({cwd = vim.fn.expand('~/.config/nvim')}) end, {})
 vim.keymap.set('n','<leader>g', builtin.live_grep,{})
 vim.keymap.set('n','<leader>gc', function() builtin.live_grep({cwd = vim.fn.expand('~/.config/nvim')}) end, {})
-vim.keymap.set('n','<leader>n', ':Neotree filesystem reveal right toggle<CR>')
+--vim.keymap.set('n','<leader>n', ':Neotree filesystem reveal right toggle<CR>')
+--------------------
+--- MiniFiles 
+--------------------
+require("mini.files").setup({
+  mappings = {
+    go_in = "l",
+    go_out = "h",
+  }
+})
+
+local mini_files = require('mini.files')
+local mini_files_open = false
+
+local function toggle_mini_files()
+    if mini_files_open then
+        mini_files.close()
+        mini_files_open = false
+    else
+        mini_files.open()
+        mini_files_open = true
+    end
+end
+
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'MiniFilesClosed',
+    callback = function()
+        mini_files_open = false
+    end,
+})
+vim.keymap.set('n', '<leader>n', toggle_mini_files)
+--vim.keymap.set('n','<leader>ee','<cmd> lua MiniFiles.open()<CR>')
 --------------------
 -- Completions
 --------------------
