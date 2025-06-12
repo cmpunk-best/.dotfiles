@@ -28,7 +28,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 -- Calling lazy to download plugins
 require("lazy").setup("plugins")
-vim.g.neo_tree_remove = 1
 -- require("neo-tree").setup({
 --    close_if_last_window = true,
 --    window = {
@@ -61,7 +60,7 @@ require('telescope').setup{
 local builtin = require("telescope.builtin")
 vim.keymap.set('n','<leader>f', builtin.find_files,{})
 vim.keymap.set('n','<leader>c', function() builtin.find_files({cwd = vim.fn.expand('~/.config/nvim')}) end, {})
-vim.keymap.set('n','<leader>g', builtin.live_grep,{})
+vim.keymap.set('n','<leader>gg', builtin.live_grep,{})
 vim.keymap.set('n','<leader>gc', function() builtin.live_grep({cwd = vim.fn.expand('~/.config/nvim')}) end, {})
 --vim.keymap.set('n','<leader>n', ':Neotree filesystem reveal right toggle<CR>')
 --------------------
@@ -74,27 +73,28 @@ require("mini.files").setup({
   }
 })
 
-local mini_files = require('mini.files')
-local mini_files_open = false
-
-local function toggle_mini_files()
-    if mini_files_open then
-        mini_files.close()
-        mini_files_open = false
-    else
-        mini_files.open()
-        mini_files_open = true
-    end
-end
-
-vim.api.nvim_create_autocmd('User', {
-    pattern = 'MiniFilesClosed',
-    callback = function()
-        mini_files_open = false
-    end,
-})
-vim.keymap.set('n', '<leader>n', toggle_mini_files)
---vim.keymap.set('n','<leader>ee','<cmd> lua MiniFiles.open()<CR>')
+--local mini_files = require('mini.files')
+--local mini_files_open = false
+--
+--local function toggle_mini_files()
+--    if mini_files_open then
+--        mini_files.close()
+--        mini_files_open = false
+--    else
+--        mini_files.open()
+--        mini_files_open = true
+--    end
+--end
+--
+--vim.api.nvim_create_autocmd('User', {
+--    pattern = 'MiniFilesClosed',
+--    callback = function()
+--        mini_files_open = false
+--    end,
+--})
+--vim.keymap.set('n', '<leader>n', toggle_mini_files)
+vim.keymap.set('n','<leader>n','<cmd> lua MiniFiles.open()<CR>')
+vim.keymap.set('n','<leader>x','<cmd> lua MiniFiles.close()<CR>')
 --------------------
 -- Completions
 --------------------

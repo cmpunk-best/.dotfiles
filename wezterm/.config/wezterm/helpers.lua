@@ -144,11 +144,6 @@ function module.apply_to_config(config)
   { key = 'j', mods = 'CTRL', action = wezterm.action.SwitchWorkspaceRelative(1) },
   { key = 'p', mods = 'CTRL', action = wezterm.action.SwitchWorkspaceRelative(-1) },
   { key = 'r', mods = 'CTRL', action = wezterm.action.RotatePanes 'Clockwise' },
-  {
-    key = 'q',
-    mods = 'CTRL',
-    action = wezterm.action.CloseCurrentPane { confirm = true },
-  },
   { key = 't', mods = 'CTRL', action = wezterm.action.ShowTabNavigator },
 }
 end
