@@ -5,6 +5,9 @@ return {
     {
       "echasnovski/mini.files"
     },
+    { 
+      "Mofiqul/dracula.nvim" 
+    },
     {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' }

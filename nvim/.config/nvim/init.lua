@@ -125,16 +125,23 @@ vim.api.nvim_set_keymap('i', '<C-Space>', [[cmp#complete()]], { expr = true, sil
 -- Colorscheme
 --require("gruvbox").setup()
 --require("darkvoid").setup()
-require("catppuccin").setup({
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
-    background = { -- :h background
-        light = "latte",
-        dark = "frappe",
-    },
-    transparent_background = true, -- disables setting the background color.
-    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-    no_italic = false, -- Force no italic
-  }) 
+-- require("catppuccin").setup({
+--     flavour = "mocha", -- latte, frappe, macchiato, mocha
+--     background = { -- :h background
+--         light = "latte",
+--         dark = "frappe",
+--     },
+--     transparent_background = true, -- disables setting the background color.
+--     show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+--     no_italic = false, -- Force no italic
+--   }) 
+require("dracula").setup({
+  show_end_of_buffer = true,
+  transparent_bg = true, 
+  lualine_bg_color = "#44475a",
+  italic_comment = true, 
+  overrides = {},
+})
 --[[
 require("rose-pine").setup({
                 variant = "moon",      -- auto, main, moon, or dawn
@@ -168,7 +175,8 @@ require("rose-pine").setup({
 
 vim.o.background = "dark" -- or "light" for light mode
 --vim.cmd.colorscheme("retrobox")
-vim.cmd.colorscheme("catppuccin")
+--vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("dracula")
 vim.g.moonflyTransparent = true
 
 vim.g.moonflyCursorColor = true
