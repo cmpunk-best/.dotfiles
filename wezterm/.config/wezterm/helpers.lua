@@ -88,18 +88,6 @@ function module.apply_to_config(config)
   }
   config.keys = {
     {
-      key = 'i',
-      mods = 'CTRL',
-      -- action = wezterm.action.SplitHorizontal {  domain = "CurrentPaneDomain" },
-       action = wezterm.action_callback(function(win, pane)
-        -- Split the pane horizontally
-        win:perform_action(wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }, pane)
-        -- Adjust the right pane size by resizing the left one
-        wezterm.sleep_ms(100)  -- Small delay to ensure the pane has split
-        win:perform_action(wezterm.action.AdjustPaneSize { "Right", 25}, pane)  -- Adjust size to fit your needs
-      end),
-    },
-    {
       key = "LeftArrow",
       mods = "SHIFT",
       action = wezterm.action.AdjustPaneSize { "Left", 5 }, -- Adjust pane size by 5 cells to the left

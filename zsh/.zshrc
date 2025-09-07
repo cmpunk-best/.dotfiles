@@ -114,6 +114,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias audio="killall pipewire; killall wireplumber; killall pipewire-pulse"
 alias v="nvim"
+alias wifi="nmtui-connect"
 alias va="nvim ~/.zshrc"
 alias so="source ~/.zshrc"
 alias t="cd ~"
@@ -128,10 +129,9 @@ alias remove="sudo pacman -Rcns"
 alias weather='f() { curl -s "wttr.in/$1?0"; }; f'
 alias ta='f(){tmux a -t $1;};f'
 alias ts='f(){tmux new -s $1;};f'
-alias vol='f(){wpctl set-volume 44 $1;};f'
-alias z='yazi'
-
-
+alias vol='f(){wpctl set-volume 56 $1;};f'
+alias shift_audio='pactl set-card-profile 44 output:analog-stereo+input:analog-stereo'
+alias version='f(){pacman -Qi $1 | grep Version;};f'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
@@ -143,6 +143,13 @@ alias z='yazi'
 # Display cowsay only once per session
 #~/starting_display.sh
 
-
+## YAZI 
+function z() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 
 
