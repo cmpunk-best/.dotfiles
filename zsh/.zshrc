@@ -130,8 +130,8 @@ alias weather='f() { curl -s "wttr.in/$1?0"; }; f'
 alias ta='f(){tmux a -t $1;};f'
 alias ts='f(){tmux new -s $1;};f'
 alias vol='f(){wpctl set-volume 56 $1;};f'
-alias shift_audio='pactl set-card-profile 44 output:analog-stereo+input:analog-stereo'
 alias version='f(){pacman -Qi $1 | grep Version;};f'
+alias printer_issue='hp-setup'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
@@ -152,4 +152,12 @@ function z() {
 	rm -f -- "$tmp"
 }
 
-
+function setaudio() {
+    if [[ "$1" == "lap" ]]; then
+        pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:analog-stereo+input:analog-stereo
+    elif [[ "$1" == "mon" ]]; then
+        pactl set-card-profile alsa_card.pci-0000_00_1f.3 output:hdmi-stereo
+    else
+        echo "Usage: setaudio {lap|mon}"
+    fi
+}
